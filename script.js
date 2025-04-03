@@ -18,7 +18,10 @@ setTimeout(function() {
 
 
 let tl = gsap.timeline();
-
+gsap.from("body", {
+    overflow: "hidden",
+    duration: 6,
+});
 tl.from(' .line1 h1 ,.line2 h1, .line2 h2, .line2 h3', {
     y: 150,
     opacity: 0,
