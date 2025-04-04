@@ -18,10 +18,8 @@ setTimeout(function() {
 
 
 let tl = gsap.timeline();
-gsap.from("body", {
-    overflow: "hidden",
-    duration: 6,
-});
+
+
 tl.from(' .line1 h1 ,.line2 h1, .line2 h2, .line2 h3', {
     y: 150,
     opacity: 0,
@@ -34,8 +32,14 @@ tl.from(' .line1 h1 ,.line2 h1, .line2 h2, .line2 h3', {
 .to('#loader', {
     display: 'none',
     delay: 3.6,
+})
+.from('.main', {
+    opacity: 0,
+    duration: 3,
+})
+
+
+gsap.from("body", {
+    overflowY: "hidden",
+    duration: 6,
 });
-
-
-
-
