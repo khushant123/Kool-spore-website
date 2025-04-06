@@ -155,6 +155,11 @@ tl.from('nav ul li', {
 
 
 
+Shery.makeMagnet(".logo" /* Element to target.*/, {
+    // //Parameters are optional.
+    // ease: "cubic-bezier(0.23, 1, 0.320, 1)",
+    // duration: 1,
+  });
 
 Shery.makeMagnet("nav ul li" /* Element to target.*/, {
     // //Parameters are optional.
@@ -163,11 +168,6 @@ Shery.makeMagnet("nav ul li" /* Element to target.*/, {
   });
 
 
-  Shery.makeMagnet(".logo" /* Element to target.*/, {
-    // //Parameters are optional.
-    // ease: "cubic-bezier(0.23, 1, 0.320, 1)",
-    // duration: 1,
-  });
 
 
 
