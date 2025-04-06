@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&");
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900&");
 
 
 * {
@@ -13,7 +13,20 @@ html, body {
   color: #f2f2f2;
   background-color: #000000;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-overflow-x: hidden;
+  overflow: hidden;
+  cursor: none !important;
+}
+
+#cursor{
+  width: 30px;
+  height: 30px;
+  background-color: #161616;
+  border-radius: 50%;
+  position: absolute;
+  pointer-events: none;
+  border: 2.1px solid #ffffffce;
+  z-index: 999999;
+  margin: -60px;
 }
 
 #loader{
@@ -59,6 +72,7 @@ nav{
   align-items: center;
   padding: 0 3%;
   height: 15vh;
+  cursor: none !important;
 }
 
 .logo img{
@@ -67,46 +81,67 @@ nav{
 
 nav ul{
   display: flex;
-  gap: 60px;
+  gap: 51px;
   list-style: none;
 }
 
 nav ul li a{
   color: #f2f2f2;
+  font-size: 24px;
+  text-decoration: none;
+  font-weight: 450;
+  cursor: none !important;
 }
 
-.main .bg-image {
+/* Nav done */
+/* Background images 1 */
+.bg-image {
   display: flex;
   justify-items: center;
 }
 
-.main .bg-image .left img{
+ .bg-image .left img{
   width: auto;
   height: 60%;
-  /* margin-right: -60px; */
 }
 
-.main .bg-image .center img{
+ .bg-image .center img{
   margin-top: -180px;
-  /* margin-right: 60px; */
-  /* margin-left: 30px; */
 }
 
-.main .bg-image .right img{
+ .bg-image .right img{
   width: auto;
   height: 81%;
   margin-left: 90px;
 }
+/* Background images done */
 
-.main .content{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+ .text1{
+  margin-left: 27%;
+  margin-top: -75%;
+  z-index: 10; /* Keep text above other elements */
 }
-.main .content p{
-  font-size: 150px;
+ .text1 h1{
+  font-size: 135px;
   text-transform: uppercase;
-  line-height: 150px;
-  font-weight: 600;
+  line-height: 135px;
+  font-weight: 660;
+}
+.text1 h1:nth-child(1){
+  margin-left: 150px;
+}
+
+.text1 h1:nth-child(5){
+  margin-left: 150px;
+}
+
+.text1 h1:nth-child(7){
+  margin-left: -60px;
+}
+
+.text1 h1:hover{
+  color: transparent;
+  stroke-width: 3px;
+  stroke: #ffffff;
+  -webkit-text-stroke: 3px #f2f2f2;
 }

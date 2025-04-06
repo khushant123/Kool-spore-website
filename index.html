@@ -4,9 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kool spore</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css" integrity="sha256-TryXbHoOGuTSpAGc8mP33sWvAKI+fhvU4AZZ0LPaesk=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/sheryjs/dist/Shery.css" /> <!-- Recommended -->
     <link rel="stylesheet" href="style.css"> 
 </head>
 <body>
+    
+    <div id="cursor"></div>
+
     <div id="loader">
         <div class="line1">
             <h1>Your Website</h1>
@@ -18,12 +23,13 @@
         </div>
     </div>
     
-    <div class="main">
+    <div class="main" data-scroll-container data-scroll-speed="1">
+        <div id="front-look">
         <nav>
         <div class="logo">
             <img src="images/Kool Spore_Final Logo_KOOL SPORE_BLACK.png" alt="logo">
         </div>
-        <ul >
+        <ul>
             <li><a href="#">Home</a></li>
             <li><a href="#">About</a></li>
             <li><a href="#">Services</a></li>
@@ -33,29 +39,32 @@
 
         <div class="bg-image">
         <div class="left">
-            <img src="images/main-left-bg-img.png" alt="">  
+            <img src="images/main-left-bg-img.png" alt=""  data-scroll data-scroll-speed="0.15">  
         </div>
         <div class="center">
-            <img src="images/main-center-bg-img.png" alt="">
+            <img src="images/main-center-bg-img.png" alt=""  data-scroll data-scroll-speed="0.15">
         </div>
         <div class="right">
-            <img src="images/main-right-bg-img.png" alt="">
+            <img src="images/main-right-bg-img.png" alt=""  data-scroll data-scroll-speed="0.15">
         </div>
         </div>
 
-        <div class="content">
-        <p>We help <br>
-        ideas <br> 
-        to change
-        <br> world</p>
-
+        <div class="text1">
+        <h1> We help </h1><br>
+        <h1>ideas </h1><br> 
+        <h1>to change</h1> <br>
+        <h1>the world</h1>
         </div>
-
+        </div>
+        
     </div>
+    
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/gsap.min.js" integrity="sha512-f6bQMg6nkSRw/xfHw5BCbISe/dJjXrVGfz9BSDwhZtiErHwk7ifbmBEtF9vFW8UNIQPhV2uEFVyI/UHob9r7Cw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/ScrollTrigger.min.js" integrity="sha512-AcqPGqrrAEtEwe+ADO5R8RbdFi7tuU7b/A2cJJH0Im0D18NRk5p5s4B3E5PMuO81KFw0ClN7J5SHVUJz7KOb0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js" integrity="sha256-odlNpseyKe/Yr2FVkKfof6CSj8+edbarxw5hDpqCGBE=" crossorigin="anonymous"></script>
+    <script  type="text/javascript"  src="https://unpkg.com/sheryjs/dist/Shery.js"></script> <!-- Recommended -->
     <script src="script.js"></script>
 </body>
 </html>
