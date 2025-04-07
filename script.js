@@ -1,4 +1,5 @@
 // Initialize Locomotive Scroll
+function locomotive(){
 function initLocomotiveScroll() {
     const scroll = new LocomotiveScroll({
         el: document.querySelector('[data-scroll-container]'),
@@ -44,7 +45,7 @@ window.addEventListener('load', () => {
     }, 5000); // Adjust timing to match your loader duration
 });
 
-
+}
 // locomotive done
 
 function h2timer() {
@@ -73,7 +74,7 @@ function cursor() {
         x: e.clientX - 15, // Centering the cursor (assuming 30px width)
         y: e.clientY - 15, // Centering the cursor (assuming 30px height)
         duration: 0.3,     // Smooth follow effect
-        ease: 'power2.out' // Easing function for smoother movement
+        ease: 'power3.out' // Easing function for smoother movement
       });
     });
     
@@ -85,7 +86,7 @@ function cursor() {
       el.addEventListener('mouseenter', () => {
         gsap.to('#cursor', {
           scale: 1.35,
-          backgroundColor: '#444444',
+          backgroundColor: 'transparent',
           duration: 0.3
         });
       });
@@ -162,9 +163,7 @@ Shery.makeMagnet(".logo" /* Element to target.*/, {
   });
 
 Shery.makeMagnet("nav ul li" /* Element to target.*/, {
-    // //Parameters are optional.
-    // ease: "cubic-bezier(0.23, 1, 0.320, 1)",
-    // duration: 1,
+    scale: 1.2,
   });
 
 
