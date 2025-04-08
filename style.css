@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900&");
 
-
 * {
   margin: 0;
   padding: 0;
@@ -9,12 +8,24 @@
 
 html, body {
   height: 100%;
-  /* width: 100%; */
-  color: #f2f2f2;
+  width: 100%; /* Uncommented for better responsiveness */
+  color: #ffffff;
   background-color: #000000;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  overflow: hidden;
+  overflow: hidden; /* Changed back to hidden to prevent scrollbar */
   cursor: none !important;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Media query to handle cursor on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  html, body, nav, nav ul li a {
+    cursor: auto !important; /* Enable default cursor on touch devices */
+  }
+  
+  #cursor {
+    display: none; /* Hide custom cursor on touch devices */
+  }
 }
 
 #cursor{
@@ -24,9 +35,13 @@ html, body {
   border-radius: 50%;
   position: absolute;
   pointer-events: none;
-  border: 1.2px solid #ffffffce;
+  border: 1.2px solid #ffffff;
   z-index: 999999;
+  transform-origin: center;
+  transition: transform 0.3s; /* Made transition super fast */
 }
+
+/* Removed cursor-trail class */
 
 #loader{
     background-color: #000000;
@@ -63,7 +78,6 @@ html, body {
 }
 /* Loader part Done */
 
-
 /* Header part */
 nav{
   display: flex;
@@ -76,7 +90,7 @@ nav{
 }
 
 .logo img{
-  height: 120px;
+  height: 105px;
 }
 
 nav ul{
@@ -87,75 +101,263 @@ nav ul{
 
 nav ul li a{
   color: #f2f2f2;
-  font-size: 18 px;
+  font-size: 18px; /* Fixed typo: removed space between 18 and px */
   text-decoration: none;
   font-weight: 450;
   cursor: none !important;
 }
 
-/* Nav done */
+/* Mobile menu button - hidden by default */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 100;
+}
 
+/* Nav done */
 
 /* Background images 1 */
 .bg-image {
-  display: flex;
-  justify-items: center;
+  width: 100%;
+  height: 100%;
 }
 
- .bg-image .left img{
-  width: auto;
-  height: 45%;
+.bg-image img{
+  width: 100%;
+  margin-top: -99px;
 }
 
- .bg-image .center img{
-  margin-top: -180px;
-  margin-left: -210px;
-  height: 90%;
-}
-
- .bg-image .right img{
-  width: auto;
-  height: 81%;
-  margin-left: -60px;
-  height: 60%;
-}
 /* Background images done */
 
- .text1{
+.text1{
   margin-left: 21%;
-  margin-top: -99%;
+  margin-top: -69%;
   z-index: 10; /* Keep text above other elements */
-  width: 63%;
+  position: relative;
 }
- .text1 h1{
-  font-size: 120px;
+.text1 h1{
+  font-size: 8.4vw;
   text-transform: uppercase;
-  line-height: 108px;
-  font-weight: 660;
+  line-height: 0.81;
+  font-weight: 640;
+  text-shadow: 3px #161616;
 }
 .text1 h1:nth-child(1){
-  margin-left: 150px;
+  margin-left: 120px;
   width: 63%;
-
 }
 .text1 h1:nth-child(3){
   width: 39%;
 }
 
 .text1 h1:nth-child(5){
-  margin-left: 150px;
-
+  margin-left: 120px;
 }
 
 .text1 h1:nth-child(7){
   margin-left: -60px;
   width: 84%;
-
 }
 
 .text1 h1:hover{
   color: transparent;
-  stroke-width: 1.2px;
+  stroke-width: 2.1px;
   stroke: #ffffff;
-  -webkit-text-stroke: 3px #f2f2f2;
+  -webkit-text-stroke: 2.1px #f2f2f2;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 1200px) {
+  .text1 h1 {
+    font-size: 9vw;
+    line-height: 0.9;
+  }
+  
+  .text1 h1:nth-child(1) {
+    margin-left: 100px;
+  }
+  
+  .text1 h1:nth-child(5) {
+    margin-left: 100px;
+  }
+  
+  .text1 h1:nth-child(7) {
+    margin-left: -30px;
+  }
+  
+  #loader h1 {
+    font-size: 5em;
+  }
+  
+  #loader h2, #loader h3 {
+    font-size: 4.5em;
+  }
+  
+  #loader h2 {
+    width: auto;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .text1 {
+    margin-left: 24%;
+    margin-top: -63%;
+    width: 70%;
+  }
+
+  .logo img {
+    height: 100px;
+  }
+  
+  nav ul {
+    gap: 30px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  html, body {
+    overflow-y: auto;
+  }
+  
+  nav {
+    height: 10vh;
+  }
+  
+  .logo img {
+    height: 80px;
+  }
+  
+  .menu-toggle {
+    display: block;
+  }
+  
+  nav ul {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 250px;
+    height: 100vh;
+    background-color: #111;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    transition: right 0.3s ease;
+    z-index: 99;
+  }
+  
+  nav ul.active {
+    right: 0;
+  }
+  
+  .text1 {
+    margin-left: 24%;
+    margin-top: -66%;
+    width: 80%;
+  }
+/*   
+  .text1 h1 {
+    font-size: 8vw;
+    line-height: 1;
+  }
+  
+  .text1 h1:nth-child(1),
+  .text1 h1:nth-child(5) {
+    margin-left: 20px;
+    width: 80%;
+  }
+  
+  .text1 h1:nth-child(7) {
+    margin-left: 0;
+    width: 100%;
+  }
+  */
+  .bg-image {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .bg-image .left img,
+  .bg-image .center img,
+  .bg-image .right img {
+    margin: 0;
+    height: auto;
+    width: 90%;
+  }
+  
+  #loader h1 {
+    font-size: 3.5em;
+  }
+  
+  #loader h2, #loader h3 {
+    font-size: 3em;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .logo img {
+    height: 60px;
+  }
+  .bg-image img{
+    margin-top: -39px;
+  }
+  
+  .text1 {
+    margin-left: 18%;
+    margin-top: -60%;
+    width: 90%;
+  }
+  
+  .text1 h1 {
+    font-size: 9vw;
+    line-height: 0.9;
+  }
+  
+  .text1 h1:nth-child(1),
+  .text1 h1:nth-child(5) {
+    margin-left: 60px;
+    width: 90%;
+  }
+  
+  .text1 h1:nth-child(3) {
+    width: 30%;
+  }
+  
+  .text1 h1:nth-child(7) {
+    margin-left: -18px;
+  }
+  
+  .text1 h1:hover {
+    -webkit-text-stroke: 1px #f2f2f2;
+  }
+  #loader h1 {
+    font-size: 2.5em;
+  }
+  
+  #loader h2, #loader h3 {
+    font-size: 2em;
+  }
+  
+  .line2 {
+    gap: 10px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .text1 h1 {
+    font-size: 9vw;
+    line-height: 0.75;
+  }
+  
+  nav {
+    padding: 0 5%;
+  }
+  
+  .logo img {
+    height: 50px;
+  }
 }
