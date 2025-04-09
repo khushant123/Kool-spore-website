@@ -120,7 +120,7 @@ function cursor() {
         if (cursor) {
           cursor.style.backgroundColor = 'transparent';
           cursor.style.borderWidth = '2px';
-          cursor.style.borderColor = '#161616';
+          cursor.style.borderColor = '#f2f2f2';
         }
       });
       
