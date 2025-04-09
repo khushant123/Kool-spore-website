@@ -228,7 +228,7 @@ nav ul li a{
   }
   
   .logo img {
-    height: 80px;
+    height: 120px;
   }
   
   .menu-toggle {
@@ -255,39 +255,22 @@ nav ul li a{
   }
   
   .text1 {
-    margin-left: 24%;
-    margin-top: -66%;
+    margin-left: 12%;
+    margin-top: -81%;
     width: 80%;
   }
-/*   
   .text1 h1 {
-    font-size: 8vw;
+    font-size: 11.1vw;
     line-height: 1;
-  }
-  
-  .text1 h1:nth-child(1),
-  .text1 h1:nth-child(5) {
-    margin-left: 20px;
-    width: 80%;
-  }
-  
-  .text1 h1:nth-child(7) {
-    margin-left: 0;
-    width: 100%;
-  }
-  */
+    }
+    
+
   .bg-image {
-    flex-direction: column;
-    align-items: center;
+    scale: 1.5;
+    rotate: 3deg;  
+    margin-top: 180px;
   }
   
-  .bg-image .left img,
-  .bg-image .center img,
-  .bg-image .right img {
-    margin: 0;
-    height: auto;
-    width: 90%;
-  }
   
   #loader h1 {
     font-size: 3.5em;
@@ -303,17 +286,19 @@ nav ul li a{
     height: 60px;
   }
   .bg-image img{
-    margin-top: -39px;
+    margin-top: -18px;
+    scale: 2.1;
+    rotate: 6deg;
   }
   
   .text1 {
-    margin-left: 18%;
+    margin-left: 12%;
     margin-top: -60%;
     width: 90%;
   }
   
   .text1 h1 {
-    font-size: 9vw;
+    font-size: 12.9vw;
     line-height: 0.9;
   }
   
