@@ -9,17 +9,17 @@
         http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd">
 
   <url>
-    <loc>https://koolspore.khushant.me/</loc>
+    <loc>https://koolspore.com/</loc>
     <lastmod>2025-04-10T12:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://koolspore.khushant.me/images/Kool%20Spore_Final%20Logo_KOOL%20SPORE_BLACK.png</image:loc>
+      <image:loc>https://koolspore.com/images/Kool%20Spore_Final%20Logo_KOOL%20SPORE_BLACK.png</image:loc>
       <image:title>Kool Spore Creative Digital Agency Logo</image:title>
       <image:caption>Kool Spore - Transforming ideas through design and digital expertise</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://koolspore.khushant.me/images/Background-images.png</image:loc>
+      <image:loc>https://koolspore.com/images/Background-images.png</image:loc>
       <image:title>Kool Spore Creative Background</image:title>
       <image:caption>Kool Spore - Creative Digital Solutions</image:caption>
     </image:image>
@@ -27,7 +27,7 @@
   
   <!-- Placeholder for about page - Update when page is created -->
   <url>
-    <loc>https://koolspore.khushant.me/about/</loc>
+    <loc>https://koolspore.com/about/</loc>
     <lastmod>2025-04-10T12:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -35,7 +35,7 @@
   
   <!-- Placeholder for services page - Update when page is created -->
   <url>
-    <loc>https://koolspore.khushant.me/services/</loc>
+    <loc>https://koolspore.com/services/</loc>
     <lastmod>2025-04-10T12:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -43,7 +43,7 @@
   
   <!-- Placeholder for contact page - Update when page is created -->
   <url>
-    <loc>https://koolspore.khushant.me/contact/</loc>
+    <loc>https://koolspore.com/contact/</loc>
     <lastmod>2025-04-10T12:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
