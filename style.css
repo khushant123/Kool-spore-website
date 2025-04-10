@@ -1,5 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900&");
 
+/* Font Configuration */
+:root {
+  --heading-font: 'Montserrat', sans-serif;
+  --body-font: 'Poppins', sans-serif;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -11,7 +17,7 @@ html, body {
   width: 100%; /* Uncommented for better responsiveness */
   color: #ffffff;
   background-color: #000000;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: var(--body-font);
   overflow: hidden; /* Changed back to hidden to prevent scrollbar */
   cursor: none !important;
   -webkit-font-smoothing: antialiased;
@@ -46,7 +52,7 @@ html, body {
 #loader{
     background-color: #000000;
     color: white;
-    font-family: "inter";
+    font-family: var(--heading-font);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -143,7 +149,9 @@ nav ul li a{
   font-size: 8.4vw;
   text-transform: uppercase;
   line-height: 0.81;
-  font-weight: 640;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
   text-shadow: 3px #161616;
 }
 .text1 h1:nth-child(1){
@@ -345,4 +353,54 @@ nav ul li a{
   .logo img {
     height: 50px;
   }
+}
+
+/* Logo Enhancement */
+.logo-container {
+  display: inline-block;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.logo-container:hover {
+  transform: scale(1.05);
+}
+
+.logo-img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+  transition: filter 0.3s ease;
+}
+
+.logo-img:hover {
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,0.15));
+}
+
+/* Loader Font Enhancement */
+#loader .line1 h1 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+#loader .line2 h1, 
+#loader .line2 h2, 
+#loader .line2 h3 {
+  font-weight: 500;
+}
+
+/* Nav Menu Font Enhancement */
+#nav-menu {
+  font-family: var(--heading-font);
+  font-weight: 500;
+}
+
+#nav-menu a {
+  letter-spacing: 0.03em;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+#nav-menu a:hover {
+  transform: translateY(-2px);
 }
