@@ -1,0 +1,27 @@
+{
+  "name": "Kool Spore - Creative Digital Agency",
+  "short_name": "Kool Spore",
+  "description": "Innovative web design, branding, and digital marketing solutions by Kool Spore - transforming business ideas into digital success",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "images/Kool Spore_Final Logo_KOOL SPORE_BLACK.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "images/Kool Spore_Final Logo_KOOL SPORE_BLACK.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "orientation": "portrait",
+  "categories": ["business", "design", "web development", "digital marketing", "branding"],
+  "lang": "en-US",
+  "dir": "ltr"
+}
