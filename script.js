@@ -1,51 +1,55 @@
 // Initialize Locomotive Scroll
 function locomotive(){
-function initLocomotiveScroll() {
-    const scroll = new LocomotiveScroll({
-        el: document.querySelector('[data-scroll-container]'),
-        smooth: true,
-        multiplier: 1,
-        lerp: 0.05,
-        smartphone: {
-            smooth: true
-        },
-        tablet: {
-            smooth: true
-        }
+    function initLocomotiveScroll() {
+        const scroll = new LocomotiveScroll({
+            el: document.querySelector('[data-scroll-container]'),
+            smooth: true,
+            multiplier: 1,
+            lerp: 0.05,
+            smartphone: {
+                smooth: true
+            },
+            tablet: {
+                smooth: true
+            }
+        });
+
+        // Update scroll position for animations
+        scroll.on('scroll', ScrollTrigger.update);
+
+        // Set up ScrollTrigger to work with Locomotive Scroll
+        ScrollTrigger.scrollerProxy('[data-scroll-container]', {
+            scrollTop(value) {
+                return arguments.length ? scroll.scrollTo(value, 0, 0) : scroll.scroll.instance.scroll.y;
+            },
+            getBoundingClientRect() {
+                return {top: 0, left: 0, width: window.innerWidth, height: window.innerHeight};
+            },
+            pinType: document.querySelector('[data-scroll-container]').style.transform ? "transform" : "fixed"
+        });
+
+        // Each time the window updates, refresh ScrollTrigger and Locomotive Scroll
+        ScrollTrigger.addEventListener('refresh', () => scroll.update());
+        ScrollTrigger.refresh();
+
+        console.log('Locomotive Scroll initialized successfully');
+        return scroll;
+    }
+
+    // Initialize after the page is fully loaded
+    let locoScroll;
+    window.addEventListener('load', () => {
+        // Initialize only after the loader animation is complete
+        setTimeout(() => {
+            locoScroll = initLocomotiveScroll();
+        }, 5000); // Adjust timing to match your loader duration
     });
-
-    // Update scroll position for animations
-    scroll.on('scroll', ScrollTrigger.update);
-
-    // Set up ScrollTrigger to work with Locomotive Scroll
-    ScrollTrigger.scrollerProxy('[data-scroll-container]', {
-        scrollTop(value) {
-            return arguments.length ? scroll.scrollTo(value, 0, 0) : scroll.scroll.instance.scroll.y;
-        },
-        getBoundingClientRect() {
-            return {top: 0, left: 0, width: window.innerWidth, height: window.innerHeight};
-        },
-        pinType: document.querySelector('[data-scroll-container]').style.transform ? "transform" : "fixed"
-    });
-
-    // Each time the window updates, refresh ScrollTrigger and Locomotive Scroll
-    ScrollTrigger.addEventListener('refresh', () => scroll.update());
-    ScrollTrigger.refresh();
-
-    console.log('Locomotive Scroll initialized successfully');
-    return scroll;
 }
 
-// Initialize after the page is fully loaded
-let locoScroll;
-window.addEventListener('load', () => {
-    // Initialize only after the loader animation is complete
-    setTimeout(() => {
-        locoScroll = initLocomotiveScroll();
-    }, 5000); // Adjust timing to match your loader duration
-});
+// Call the locomotive function to initialize it
+locomotive();
 
-}
+
 // locomotive done
 
 function h2timer() {
@@ -187,10 +191,26 @@ function initResponsiveFeatures() {
     
     // Initialize mobile menu
     initMobileMenu();
-}
+cursor();
+initResponsiveFeatures();
+
+// Make sure your main content has the data-scroll-container attribute
+document.addEventListener('DOMContentLoaded', function() {
+    const mainElement = document.querySelector('.main');
+    if (mainElement && !mainElement.hasAttribute('data-scroll-container')) {
+        mainElement.setAttribute('data-scroll-container', '');
+        console.log('Added data-scroll-container attribute to .main element');
+    }
+});
+
+
 
 cursor();
 initResponsiveFeatures();
+
+
+
+
 
 let tl = gsap.timeline();
 
@@ -248,7 +268,4 @@ if (window.innerWidth > 768) {
     });
 }
 
-
-
-
-
+}
