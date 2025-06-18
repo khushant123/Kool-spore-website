@@ -143,19 +143,13 @@
     <link rel="manifest" href="manifest.json">
     <meta name="msapplication-TileColor" content="#000000">
     <meta name="theme-color" content="#000000">
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="style.css"> 
     <!-- Font Awesome for menu icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     
-    <div id="cursor"></div>
+    <div id="cursor" aria-hidden="true"></div>
 
     <div id="loader">
         <div class="line1">
@@ -172,8 +166,8 @@
         <header id="front-look">
             <nav role="navigation" aria-label="Main Navigation">
                 <div class="logo">
-                    <a href="/" aria-label="Kool Spore Home" class="logo-container">
-                        <img src="images/Kool Spore_Final Logo_KOOL SPORE_BLACK.png" alt="Kool Spore Creative Digital Agency Logo" width="120" height="120" class="logo-img">
+                    <a href="/" aria-label="Kool Spore Home">
+                        <img src="images/Kool Spore_Final Logo_KOOL SPORE_BLACK.png" alt="Kool Spore Creative Digital Agency Logo" width="105" height="105">
                     </a>
                 </div>
              <!-- Added mobile menu toggle button -->
@@ -217,7 +211,25 @@
         
     </div>
     
-
+    <!-- Structured data for the homepage content -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Kool Spore - Creative Digital Agency",
+      "description": "Kool Spore helps transform ideas into digital reality with innovative web design, branding, and marketing services.",
+      "keywords": "Kool Spore, web design, branding, digital marketing, creative agency, UI/UX design",
+      "url": "https://koolspore.khushant.me/",
+      "mainEntity": {
+        "@type": "CreativeWork",
+        "name": "We help ideas to change the world",
+        "creator": {
+          "@type": "Organization",
+          "name": "Kool Spore"
+        }
+      }
+    }
+    </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/gsap.min.js" integrity="sha512-f6bQMg6nkSRw/xfHw5BCbISe/dJjXrVGfz9BSDwhZtiErHwk7ifbmBEtF9vFW8UNIQPhV2uEFVyI/UHob9r7Cw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/ScrollTrigger.min.js" integrity="sha512-AcqPGqrrAEtEwe+ADO5R8RbdFi7tuU7b/A2cJJH0Im0D18NRk5p5s4B3E5PMuO81KFw0ClN7J5SHVUJz7KOb0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
