@@ -24,4 +24,4 @@ User-agent: Baiduspider
 Allow: /
 
 # Sitemap location
-Sitemap: https://koolspore.khushant.me/sitemap.xml
+Sitemap: https://www.koolspore.com/sitemap.xml

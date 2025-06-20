@@ -1,142 +1,100 @@
-// Initialize Locomotive Scroll
-function locomotive(){
-    function initLocomotiveScroll() {
-        const scroll = new LocomotiveScroll({
-            el: document.querySelector('[data-scroll-container]'),
-            smooth: true,
-            multiplier: 1,
-            lerp: 0.05,
-            smartphone: {
-                smooth: true
-            },
-            tablet: {
-                smooth: true
-            }
-        });
-
-        // Update scroll position for animations
-        scroll.on('scroll', ScrollTrigger.update);
-
-        // Set up ScrollTrigger to work with Locomotive Scroll
-        ScrollTrigger.scrollerProxy('[data-scroll-container]', {
-            scrollTop(value) {
-                return arguments.length ? scroll.scrollTo(value, 0, 0) : scroll.scroll.instance.scroll.y;
-            },
-            getBoundingClientRect() {
-                return {top: 0, left: 0, width: window.innerWidth, height: window.innerHeight};
-            },
-            pinType: document.querySelector('[data-scroll-container]').style.transform ? "transform" : "fixed"
-        });
-
-        // Each time the window updates, refresh ScrollTrigger and Locomotive Scroll
-        ScrollTrigger.addEventListener('refresh', () => scroll.update());
-        ScrollTrigger.refresh();
-
-        console.log('Locomotive Scroll initialized successfully');
-        return scroll;
-    }
-
-    // Initialize after the page is fully loaded
-    let locoScroll;
-    window.addEventListener('load', () => {
-        // Initialize only after the loader animation is complete
-        setTimeout(() => {
-            locoScroll = initLocomotiveScroll();
-        }, 5000); // Adjust timing to match your loader duration
-    });
-}
-
-// Call the locomotive function to initialize it
-locomotive();
-
-
-// locomotive done
-
 function h2timer() {
-let h2timer = document.querySelectorAll(".line2 h2");
-let grow = 0;
-// Add initial delay before starting the counter
-setTimeout(function() {
-    var counterInterval = setInterval(function() {
-        if (grow < 100) {
-            h2timer[0].innerHTML = grow++
+    const h2Element = document.querySelector(".line2 h2");
+    if (!h2Element) {
+        console.warn('Timer element not found');
+        return;
+    }
+    
+    let grow = 0;
+    const targetValue = 100;
+    const interval = 39; // ~25fps for smooth animation
+    
+    const counterInterval = setInterval(() => {
+        if (grow <= targetValue) {
+            h2Element.textContent = grow;
+            grow++;
         } else {
-            h2timer[0].innerHTML = grow
-            clearInterval(counterInterval) // Stop the interval when done
+            clearInterval(counterInterval);
         }
-    }, 39)
-}, 1200) // Delay before starting the counter
+    }, interval);
 }
+
 
 
 
 function cursor() {
-    // Check if it's a touch device - don't initialize cursor on touch devices
+    // Skip cursor setup on touch devices
     if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
         document.body.style.cursor = 'auto';
-        const cursorEl = document.getElementById('cursor');
-        if (cursorEl) cursorEl.style.display = 'none';
-        return; // Exit early for touch devices
+        return;
     }
     
-    // Track mouse position
-    let mouseX = 0;
-    let mouseY = 0;
+    // Cache cursor element
+    let cursorElement = document.getElementById('cursor');
     
-    // Create cursor element if it doesn't exist
-    if (!document.getElementById('cursor')) {
-        const cursorElement = document.createElement('div');
+    // Create cursor if it doesn't exist
+    if (!cursorElement) {
+        cursorElement = document.createElement('div');
         cursorElement.id = 'cursor';
-        cursorElement.style.position = 'fixed';
-        cursorElement.style.width = '30px';
-        cursorElement.style.height = '30px';
-        cursorElement.style.borderRadius = '50%';
-        cursorElement.style.borderWidth = '1px';
-        cursorElement.style.borderStyle = 'solid';
-        cursorElement.style.borderColor = '#ffffff';
-        cursorElement.style.backgroundColor = '#161616';
-        cursorElement.style.pointerEvents = 'none';
-        cursorElement.style.zIndex = '9999';
-        cursorElement.style.transform = 'translate(-50%, -50%)';
+        
+        // Apply styles efficiently
+        Object.assign(cursorElement.style, {
+            position: 'fixed',
+            width: '30px',
+            height: '30px',
+            borderRadius: '50%',
+            border: '1px solid #ffffff',
+            backgroundColor: '#161616',
+            pointerEvents: 'none',
+            zIndex: '9999',
+            transform: 'translate(-50%, -50%)',
+            transition: 'background-color 0.2s, border 0.2s'
+        });
+        
         document.body.appendChild(cursorElement);
     }
     
-    // Custom cursor implementation - super fast with no scaling
-    document.addEventListener('mousemove', function(e) {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      
-      // Direct positioning without GSAP for maximum speed
-      const cursor = document.getElementById('cursor');
-      if (cursor) {
-        cursor.style.left = `${mouseX}px`;
-        cursor.style.top = `${mouseY}px`;
-      }
-    });
+    // Optimized mouse tracking with requestAnimationFrame
+    let mouseX = 0, mouseY = 0;
+    let isMoving = false;
     
-    // Add hover effects for interactive elements
+    const updateCursor = () => {
+        if (cursorElement && isMoving) {
+            cursorElement.style.left = `${mouseX}px`;
+            cursorElement.style.top = `${mouseY}px`;
+            isMoving = false;
+        }
+        requestAnimationFrame(updateCursor);
+    };
+    
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        isMoving = true;
+    }, { passive: true });
+    
+    // Start cursor animation loop
+    requestAnimationFrame(updateCursor);
+    
+    // Interactive elements hover effects
     const interactiveElements = document.querySelectorAll('a, button, nav ul li, .logo, .text1 h1');
     
     interactiveElements.forEach(el => {
-      // Change cursor color on hover without scaling
-      el.addEventListener('mouseenter', () => {
-        const cursor = document.getElementById('cursor');
-        if (cursor) {
-          cursor.style.backgroundColor = 'transparent';
-          cursor.style.borderWidth = '2px';
-          cursor.style.borderColor = '#f2f2f2';
-        }
-      });
-      
-      // Revert cursor style on mouse leave
-      el.addEventListener('mouseleave', () => {
-        const cursor = document.getElementById('cursor');
-        if (cursor) {
-          cursor.style.backgroundColor = '#161616';
-          cursor.style.borderWidth = '1.2px';
-          cursor.style.borderColor = '#ffffff';
-        }
-      });
+        el.addEventListener('mouseenter', () => {
+            if (cursorElement) {
+                cursorElement.style.backgroundColor = 'transparent';
+                cursorElement.style.borderWidth = '2px';
+                cursorElement.style.borderColor = '#f2f2f2';
+            }
+        });
+        
+        el.addEventListener('mouseleave', () => {
+            if (cursorElement) {
+                cursorElement.style.backgroundColor = '#161616';
+                cursorElement.style.borderWidth = '1px';
+                cursorElement.style.borderColor = '#ffffff';
+            }
+        });
     });
     
     // Hide default cursor
@@ -177,95 +135,67 @@ function initMobileMenu() {
     }
 }
 
-// Initialize responsiveness features
-function initResponsiveFeatures() {
-    // Check window width and adjust functionality
-    const handleResize = () => {
-        // We're handling overflow in CSS now, so we don't need to modify it here
-        // Just initialize other responsive features as needed
-    };
-    
-    // Run on load and resize
-    window.addEventListener('resize', handleResize);
-    handleResize();
-    
-    // Initialize mobile menu
-    initMobileMenu();
-cursor();
-initResponsiveFeatures();
 
-// Make sure your main content has the data-scroll-container attribute
-document.addEventListener('DOMContentLoaded', function() {
-    const mainElement = document.querySelector('.main');
-    if (mainElement && !mainElement.hasAttribute('data-scroll-container')) {
-        mainElement.setAttribute('data-scroll-container', '');
-        console.log('Added data-scroll-container attribute to .main element');
+
+// Initialize all functionality when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    // Initialize core functions
+    cursor();
+    initMobileMenu();
+    
+    // GSAP Timeline for animations
+    const tl = gsap.timeline();
+    
+    tl.from('.line1 h1, .line2 h1, .line2 h2, .line2 h3', {
+        y: 150,
+        opacity: 0,
+        duration: 0.9,
+        delay: 0.45,
+        stagger: 0.24,
+        ease: 'power2.out'
+    })
+    .to('#loader', {
+        display: 'none',
+        delay: 3.6,
+        onStart: () => {
+            h2timer(); // Start counter when loader begins to fade
+        }
+    })
+
+    .from('.logo', {
+        y: -50,
+        opacity: 0,
+        duration: 0.9,
+        ease: 'power2.out'
+    }, '-=1.5')
+    .from('nav ul li', {
+        y: -45,
+        opacity: 0,
+        duration: 0.9,
+        stagger: 0.15,
+        ease: 'power2.out'
+    }, '-=0.6');
+    
+    // Initialize Shery.js effects for desktop only
+    if (window.innerWidth > 768 && typeof Shery !== 'undefined') {
+        try {
+            Shery.makeMagnet('.logo', {
+                ease: 'cubic-bezier(0.23, 1, 0.320, 1)',
+                duration: 1
+            });
+            
+            Shery.makeMagnet('nav ul li', {
+                scale: 1.1
+            });
+        } catch (error) {
+            console.warn('Shery.js initialization failed:', error);
+        }
+    }
+    
+    // Performance monitoring
+    if (typeof performance !== 'undefined') {
+        console.log(`Page load time: ${(performance.now() / 1000).toFixed(2)}s`);
     }
 });
 
 
-
-cursor();
-initResponsiveFeatures();
-
-
-
-
-
-let tl = gsap.timeline();
-
-tl.from(' .line1 h1 ,.line2 h1, .line2 h2, .line2 h3', {
-    y: 150,
-    opacity: 0,
-    duration: 0.9,
-    delay: 0.45,
-    stagger: 0.24,
-    onStart: h2timer()
-})
-
-.to('#loader', {
-    display: 'none',
-    delay: 3.6,
-})
-.from('.main', {
-    opacity: 0,
-    duration: 3,
-})
-
-// Animation for navigation elements
-tl.from('.logo', {
-    y: -50,
-    opacity: 0,
-    duration: 0.9,
-    ease: 'power1.out',
-}, '-=2');
-
-tl.from('.text1', {
-    y: 50,
-    opacity: 0,
-    duration: 0.9,
-    height: 0,
-}, '<0.3' );
-
-tl.from('nav ul li', {
-    y: -45,
-    opacity: 0,
-    duration: 0.9,
-    stagger: 0.15,
-    ease: 'power1.out'
-}, '-=0.6');
-
-// Conditionally initialize Shery.js based on screen size
-if (window.innerWidth > 768) {
-    Shery.makeMagnet(".logo" /* Element to target.*/, {
-        // Parameters are optional.
-        ease: "cubic-bezier(0.23, 1, 0.320, 1)",
-        duration: 1,
-    });
-
-    Shery.makeMagnet("nav ul li" /* Element to target.*/, {
-        scale: 1.2,
-    });
-}
-
-}
