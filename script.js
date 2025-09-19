@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .to('#loader', {
         display: 'none',
-        delay: 3.6,
+        delay: 0.6,
         onStart: () => {
             h2timer(); // Start counter when loader begins to fade
         }
